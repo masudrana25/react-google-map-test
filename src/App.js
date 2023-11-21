@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyAyqBmUePso0iFdhVOlLR5uwmmu7sKVvIc",
+  });
+
+  return  isLoaded ? (
+    <div >
+      <GoogleMap
+        zoom={10}
+        center={{ lat: 90, lng: 90 }}
+        mapContainerStyle={{ width: "500px", height: "500px", border: '2px solid red' }}
+      >
+
+      </GoogleMap>
     </div>
-  );
+  ) : <div><h1>Loading............</h1></div>
 }
 
 export default App;
